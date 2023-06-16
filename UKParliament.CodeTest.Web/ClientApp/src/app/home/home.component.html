@@ -1,0 +1,86 @@
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">People management</li>
+  </ol>
+</nav>
+<div class="welcome">
+  <h1>UK Parliament - Software Engineering</h1>
+  <p>Thanks for taking the time to do our recruitment home exercise</p>
+</div>
+
+<div class="container">
+  <div class="Persond list-Person">
+    <h5 class="Persond-header">Persons List</h5>
+    <div class="Persond-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">Post Code</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Person of Persons">
+            <td>{{Person.id}}</td>
+            <td>{{Person.name}}</td>
+            <td>{{Person.address}}</td>
+            <td>{{Person.city}}</td>
+            <td>{{Person.postCode}}</td>
+            <td>{{Person.phone}}</td>
+            <td>{{Person.email}}</td>
+            <td>
+              <button type="button" class="btn btn-warning btn-sm" (click)="editPerson(Person)">Edit</button>
+              <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deletePerson(Person)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="Persond add-Person">
+    <h5 class="Persond-header">Add/Update Person</h5>
+    <div class="Persond-body">
+      <form id="add-form" (ngSubmit)="f.form.valid && savePerson(f)" #f="ngForm" novalidate>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" [(ngModel)]="Person.name" id="name" name="name" #name="ngModel" required class="form-control"
+                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" placeholder="Insert Name">
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" [(ngModel)]="Person.address" id="address" name="address" #name="ngModel" required class="form-control"
+                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" placeholder="Insert address">
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" [(ngModel)]="Person.city" id="city" name="city" #name="ngModel" required class="form-control"
+                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" placeholder="Insert city">
+        </div>
+        <div class="form-group">
+          <label for="name">Post Code</label>
+          <input type="text" [(ngModel)]="Person.postCode" id="postCode" name="postCode" #name="ngModel" required class="form-control"
+                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" placeholder="Insert postCode">
+        </div>
+        <div class="form-group">
+          <label for="name">Phone</label>
+          <input type="text" [(ngModel)]="Person.phone" id="phone" name="phone" #name="ngModel" required class="form-control"
+                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" placeholder="Insert phone">
+        </div>
+        <div class="form-group">
+          <label for="name">Email</label>
+          <input type="text" [(ngModel)]="Person.email" id="email" name="email" #name="ngModel" required class="form-control"
+                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" placeholder="Insert email">
+        </div>
+        <button type="submit" class="btn btn-primary btn-add-Person">Save</button>
+        <button type="reset" class="btn btn-secondary btn-add-Person" (click)="cleanForm(f)">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
